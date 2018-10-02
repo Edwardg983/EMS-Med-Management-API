@@ -1,44 +1,71 @@
 'use strict';
 
-//import http from 'http';
-// import express from 'express';
-// import bodyparser from 'body-parser';
-// import mongoose from 'mongoose';
-// import config from './config';
-// import routes from './routes';
-// import passport from 'passport';
-// const LocalStrategy = require('passport-local').Strategy;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-var http = require('http');
-var express = require('express');
-var bodyparser = require('body-parser');
-var mongoose = require('mongoose');
-var config = require('./config');
-var routes = require('./routes');
-var passport = require('passport');
+var _http = require('http');
+
+var _http2 = _interopRequireDefault(_http);
+
+var _express = require('express');
+
+var _express2 = _interopRequireDefault(_express);
+
+var _bodyParser = require('body-parser');
+
+var _bodyParser2 = _interopRequireDefault(_bodyParser);
+
+var _mongoose = require('mongoose');
+
+var _mongoose2 = _interopRequireDefault(_mongoose);
+
+var _config = require('./config');
+
+var _config2 = _interopRequireDefault(_config);
+
+var _routes = require('./routes');
+
+var _routes2 = _interopRequireDefault(_routes);
+
+var _passport = require('passport');
+
+var _passport2 = _interopRequireDefault(_passport);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var LocalStrategy = require('passport-local').Strategy;
 
-var app = express();
-app.server = http.createServer(app);
+// const http = require('http');
+// const express = require('express');
+// const bodyparser = require('body-parser');
+// const mongoose = require('mongoose');
+// const config = require('./config');
+// const routes = require('./routes');
+// const passport = require('passport');
+// const LocalStrategy = require('passport-local').Strategy;
+
+var app = (0, _express2.default)();
+app.server = _http2.default.createServer(app);
 
 // middleware
-app.use(bodyparser.json({
-  limit: config.bodyLimit
+app.use(_bodyParser2.default.json({
+  limit: _config2.default.bodyLimit
 }));
 // passport config
-app.use(passport.initialize());
+app.use(_passport2.default.initialize());
 var Account = require('./model/account');
-passport.use(new LocalStrategy({
+_passport2.default.use(new LocalStrategy({
   usernameField: 'email',
   passwordField: 'password'
 }, Account.authenticate()));
-passport.serializeUser(Account.serializeUser());
-passport.deserializeUser(Account.deserializeUser());
+_passport2.default.serializeUser(Account.serializeUser());
+_passport2.default.deserializeUser(Account.deserializeUser());
 // api routes v1
-app.use('/api/v1', routes);
+app.use('/api/v1', _routes2.default);
 
-app.server.listen(config.port);
+app.server.listen(_config2.default.port);
 console.log('Started on port ' + app.server.address().port);
 
-//export default app;
+exports.default = app;
 //# sourceMappingURL=index.js.map
