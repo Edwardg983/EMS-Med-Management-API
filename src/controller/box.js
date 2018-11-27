@@ -70,7 +70,6 @@ export default({ config, db }) => {
   // Deletes a truck from the DB
   // TODO: I'VE DISABLED AUTH TEMP, DON'T FORGET TO ENABLE
   api.delete('/:id', (req, res) => {
-    console.log(req.params.id);
     BoxName.findById(req.params.id, (err, box) => {
       if (err) {
         res.status(505).send(err);

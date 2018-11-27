@@ -92,7 +92,6 @@ exports.default = function (_ref) {
   // Deletes a truck from the DB
   // TODO: I'VE DISABLED AUTH TEMP, DON'T FORGET TO ENABLE
   api.delete('/:id', function (req, res) {
-    console.log(req.params.id);
     _boxName2.default.findById(req.params.id, function (err, box) {
       if (err) {
         res.status(505).send(err);

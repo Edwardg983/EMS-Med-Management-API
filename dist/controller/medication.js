@@ -100,7 +100,6 @@ exports.default = function (_ref) {
   });
 
   api.get('/getMedExists/:name/:truck/:box/:expDate', function (req, res) {
-    console.log(req.params.expDate);
     _medication2.default.find({ name: req.params.name, truck: req.params.truck, box: req.params.box, expDate: req.params.expDate }, function (err, medications) {
       if (err) {
         res.send(err);

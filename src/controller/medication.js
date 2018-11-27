@@ -68,7 +68,6 @@ export default({ config, db }) => {
   });
 
   api.get('/getMedExists/:name/:truck/:box/:expDate', (req, res) => {
-    console.log(req.params.expDate);
     Medication.find({name: req.params.name, truck: req.params.truck, box: req.params.box, expDate: req.params.expDate}, (err, medications) => {
       if (err) {
         res.send(err);
